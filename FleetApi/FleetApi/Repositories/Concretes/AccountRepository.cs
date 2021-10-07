@@ -1,6 +1,8 @@
 ﻿using FleetApi.Models;
 using FleetApi.Persistance;
 using FleetApi.Repositories.Abstracts;
+using FleetApi.ViewModels;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FleetApi.Repositories.Concretes
@@ -12,11 +14,12 @@ namespace FleetApi.Repositories.Concretes
         {
             this.dbContext = dbContext;
         }
-        public async Task<Account> AddEmployee(Account account)
+        public async Task<Account> Deposit(AccountViewModel account)
         {
-            var result = await dbContext.Accounts.AddAsync(account);
-            await dbContext.SaveChangesAsync();
-            return result.Entity;
+            Account acc = dbContext.Accounts.Where(r => r.UserId == account.UserId).FirstOrDefault();
+            acc.Balance += account.Amount;
+            dbContext.SaveChanges();
+            return acc;
         }
     }
 }

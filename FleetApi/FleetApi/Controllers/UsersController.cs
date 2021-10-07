@@ -1,5 +1,6 @@
 ﻿using FleetApi.Models;
 using FleetApi.Repositories.Abstracts;
+using FleetApi.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,7 +23,7 @@ namespace FleetApi.Controllers
             return Ok("Just Testing");
         }
         [HttpPost]
-        public async Task<ActionResult<User>> CreateUser(User user)
+        public async Task<ActionResult<User>> CreateUser(UsersViewModel user)
         {
             try
             {

@@ -1,13 +1,11 @@
 ﻿using FleetApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using FleetApi.ViewModels;
 using System.Threading.Tasks;
 
 namespace FleetApi.Repositories.Abstracts
 {
     public interface IUserRepository
     {
-        Task<User> CreateUser(User user);
+        Task<User> CreateUser(UsersViewModel user);
     }
 }
